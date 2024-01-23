@@ -70,7 +70,8 @@ JS 파싱과 실행은 자바스크립트 파일의 로드가 완료된 직후 �
 #### defer 어트리뷰트
 async와 비슷하지만 js 파싱과 실행은 HTML 파싱 완료 직후, 진행한다. 
 
-### Question
+
+## Question
 * parsing은 무엇인가요?
 * 브라우저 렌더링 과정에 대해 설명해주세요.
 * script태그에서의 async와 defer의 차이를 말해주세요.
