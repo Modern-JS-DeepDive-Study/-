@@ -1,7 +1,4 @@
-# Yonghwan
-용환 - 발표자료 정리
-
-## chapter 38 : 브라우저의 렌더링 과정
+# chapter 38 : 브라우저의 렌더링 과정
 Node.js의 등장으로 조금 더 쉽게 app 개발에 사용할 수 있게 되었다.  
 자바스크립트는 브라우저에서 HTML, CSS와 함께 실행된다.
 
@@ -43,7 +40,7 @@ HTML과 동일한 과정을 거침. CSS는 CSSOM을 생성. HTML 태그 속 CSS�
 HTML의 DOM과 CSS의 CSSOM을 합쳐 렌더 트리로 결합  
 렌더트리는 렌더링을 위한 트리 구조의 자료구이기 때문에 브라우저 화면에 렌더링되지 않는 노드(meta 태그, script 태그 등)과 CSS에 의해 비표시(display:none 등)은 포함 x  
 ![renderTree](./images/renderTree.png)  
-다음과 같은ㅇ 상황에 레이아웃 및 페인팅 재차 실행
+다음과 같은 상황에 레이아웃 및 페인팅 재차 실행
 - JS에 의한 노드 추가, 삭제
 - 브라우저 창의 리사이징에 의한 뷰포트 크기 변경
 - HTML 요소 레이아웃 변경 발생시키는 width/height, margin, padding, border, display, position, top/right/bottom/left등의 스타일 변경  
@@ -73,19 +70,7 @@ JS 파싱과 실행은 자바스크립트 파일의 로드가 완료된 직후 �
 #### defer 어트리뷰트
 async와 비슷하지만 js 파싱과 실행은 HTML 파싱 완료 직후, 진행한다. 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### Question
 * parsing은 무엇인가요?
 * 브라우저 렌더링 과정에 대해 설명해주세요.
+* script태그에서의 async와 defer의 차이를 말해주세요.
