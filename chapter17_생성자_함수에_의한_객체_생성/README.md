@@ -27,4 +27,12 @@ Object외에도 String, Number, Boolean, function, Array, Date, RegExp, Promise 
 ### constructor와 non-constructor의 구분
 함수 정의 방식에 따라 con, non-con을 구분한다. es6의 화살표 함수와 메서드 축약 표현으로 정의된 함수는 non-con, 그 외는 con이 된다.
 ### new 연산자
-일반 함수와 생성자 함수
+일반 함수와 생성자 함수의 특별한 형식 차이는 없다. new를 붙이면 생성자 함수로 동작하며, 이 때 [[Call]]이 아닌 [[Construct]]가 호출된다. 당연히 non-constructor는 호출할 수 없다.    
+따라서 구분이 없기 때문에 생성자 함수는 첫 문자를 대문자로 기술하는 파스칼 케이스로 명명한다.  
+### new.target
+ES6부터 지원하는 문법으로 new 없이 생성자 함수 호출 방지  
+new없이 호출되면 new.target은 undefined, 생성자 함수로 호출되면 new.target은 함수 자신을 가리킴
+## Question
+- 생성자 함수를 선언하는 방법과 그 쓰임새를 말해보시오. 
+- new.target에 대해 설명하시오
+
