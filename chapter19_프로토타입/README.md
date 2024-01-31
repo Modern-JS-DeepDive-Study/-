@@ -61,9 +61,168 @@ Object 생성자 함수 호출과 객체 리터럴의 평가는 추상 연산 Or
 - 모든 빌트인 생성자 함수는 전역 객체 생성 시점에 생성. (빌트인 생성자 함수의 prototype 프로퍼티에 바인딩)  
 - 생성자 함수 또는 리터럴 표기법으로 객체 생성시 프로토타입은 생성된 객체의 [[Prototype]] 내부 슬롯에 할당된다.
 ### 객체 생성 방식과 프로토타입의 결정
+객체 생성 방법
+- 객체 리터럴
+- Object 생성자 함수
+- 생성자 함수
+- Object.create 메서드
+- 클래스(ES6)
 
+조금씩 다르지만 추상 연산 OrdinaryObjectCreate에 의해 생성된다는 공통점을 가짐.
+### 생성 방식별 프로토타입들
+객체 리터럴, Object 함수 -> Object.prototype -> 객체 리터럴 내부에 프로퍼티 추가와 빈 객체 이후 프로퍼티 추가 차이  
+
+생성자 함수 -> 생성자 함수의 prototype 프로퍼티에 바인딩되어 있는 객체
+
+## 프로토타입 체인
+- 부모를 찾아올라가는 것처럼 프로토타입도 거슬러 올라가 해당 과정에 있는 모든 프로퍼티, 메서드를 사용할 수 있음  
+- 프로토타입의 프로토타입은 언제나 Object.prototype  
+- ![프로토타입 체인](images/프로토타입체인.png)    
+- Object.prototype까지 올라가서도 검색 불가시 undefined를 반환한다.
+- 상속과 프로퍼티 검색을 위한 메커니즘
+- 스코프 체인은 식별자 검색을 위한 메커니즘
+
+## 오버라이딩과 프로퍼티 섀도잉
+```js
+const Person = (function() {
+    //생성자 함수
+    function Person(name) {
+        this.name = name;
+    }
+
+    // 프로토타입 메서드
+    Person.prototype.sayHello = function () {
+        console.log(`Hi! My name is ${this.name}`);
+    };
+    
+    //생성자 함수 반환
+    return Person;
+}());
+
+const me = new Person('Lee');
+
+//인스턴스 메서드
+me.sayHello = function() {
+    console.log(`Hey! My name is ${this.name}`)''
+};
+
+// 인스턴스 메서드 호출, 프토로타입 메서드는 인스턴스 메서드에 의해 가려짐(오버라이딩, 프로퍼티 섀도잉)
+me.sayHello(); // Hey! My name is Lee
+```
+![오버라이딩&프로퍼티섀도잉](images/오버라이딩&프로퍼티섀도잉.png)  
+내부구조   
+- 이렇게 덮어쓸 수 있고(오버라이딩) 그에 따라 프로토타입 메서드 sayHello는 가려짐(프로퍼티 섀도잉)   
+- 하위 객체를 통한 프로토타입의 프로퍼티 변경, 삭제는 불가능 (get 허용, set 불가)
+ 
+## 프로토타입의 교체
+### 생성자 함수에 의한 프로토타입의 교체 
+![생성자 함수 이용 프로토타입 교체](images/프로토타입교쳬.png)  
+- 객체 리터럴 할당 시 객체 리터럴에는 constructor 프로퍼티가 없기 때문에 Object에서 상속받음
+- 프로토타입의 constructor는 객체 리터럴에 constructor 추가하는 식으로 되살릴 수 있음
+### 인스턴스에 의한 프로토타입의 교체
+생성자 함수에 비해 미묘한 차이가 있다.
+![생성자함수프로토타입교체](images/생성자함수프로토타입교체.png)  
+![인스턴스프로토타입교체](images/인스턴스프로토타입교체.png)  
+이렇듯 프로토타입 교체를 통한 객체 상속 관계 변경은 꽤나 번거롭다. -> 권장 x  
+직접 삭속 or es6의 클래스 사용 권장
+
+## instanceof 연산자
+좌변에 객체 식별자, 우변에 생성자 함수가 들어가며 우변의 피연산자가 함수가 아닌 경우 **TypeError** 발생  
+우변이 프로토타입 체인 상에 존재하면 true, 아니면 false
+
+```js
+const Person = (function () {
+    function Person(name) {
+        this.name = name;
+    }
+
+    Person.prototype = {
+        sayHello() {
+            console.log(`Hi! My name is ${this.name}`);
+        }
+    };
+
+    return Person;
+}())
+
+const me = new Person('Lee');
+
+// constructor 프로퍼티와 생성자 함수 간의 연결이 파괴되어도 instanceof는 아무런 영향 받지 않음
+console.log(me.constructor === Person); //false
+
+// Person.prototype이 me 객체의 프로토타입 체인 상에 존재하므로 true 평가된다.
+console.log(me instancof Person); //true
+// Object.prototype이 me 객체의 프로토타입 체인 상에 존재하므로 true로 평가
+console.log(me instanceof Obejct); //true
+```
+constructor와 프로토 체인은 별개라는 것을 잘 이해해야 함.
+
+## 직접 상속
+### Object.create에 의한 직접 상속
+Object.create는 추상 연산 OrdinaryObjectCreate를 호출  
+첫 번째 매개변수 : 생성할 객체의 프로토타입으로 지정할 객체    
+두 번째 매개변수 : 생성할 객체의 프로퍼티 키와 프로퍼티 디스크립터 객체로 이뤄진 객체를 전달 (생략 가능)  
+```js
+ex) obj = Object.create(Object.prototype, {
+    x: { value: 1, writable: true, enumerable: true, configurable: true}
+})
+// obj = Object.create(Object.prototype)
+// Obj.x = 1과 동일
+```
+#### 장점
+- new 연산자 없이도 객체 생성 가능
+- 프로토타입 지정하면서 객체 생성 가능
+- 객체 리터럴에 의해 생성된 객체도 상속 가능
+
+하지만 ESLint 에서는 Object.prototype의 빌트인 메서드를 객체가 직접 호출하는 것 권장 x -> 프로토타입 체인의 종점에 위치하는 객체 생성 불가하기 때문   
+따라서 간접 호출 권장
+### 객체 리터럴 내부에서 ```__proto__```에 의한 직접 상속
+```__proto__``` 을 이용해 직접 상속 구현 가능
+
+## 정적 프로퍼티/메서드
+- 생성자 함수에 추가한 정적 프로퍼티/메서드는 생성자 함수로 참조/호출(인스턴스로 호출 불가)  
+- 정적 프로퍼티/메서드는 프로토타입에 속하지 않기 때문에 접근 불가
+- Object.prototype의 메서드는 모든 객체 호출 가능
+- Object.create와 같은 Object 생성자 함수의 정적 메서드/프로퍼티는 한정적
+**프로토타입 프로터피/메서드 표기 시 prototype을 #으로 표기하기도 함**
+
+## 프로퍼티 존재 확인
+### in 연산자
+특정 프로퍼티 존재 여부 확인 (상속받은 모든 프로토타입의 프로퍼티까지)
+```
+ex) key in object
+```
+ES6 도입 Reflect.has도 동일하게 작동  
+### Object.prototype.hasOwnProperty 매서드
+객체에 특정 프로퍼티 확인 가능 (객체 고유 프로퍼티 인 경우만 true)
+
+## 프로퍼티 열거
+### for ... in 문
+ex
+```js
+const person = {
+    name : 'Lee',
+    address : 'Seoul'
+}
+
+for (const key in person) {
+    console.log(key + ': ' + person[key];)
+}
+// name: Lee
+// address: Seoul
+```
+for ... in 문은 객체의 프로토타입 체인 상에 존재하는 모든 프로토타입의 프로퍼티 중에서 프로퍼티 어트리뷰트 [[Enumerable]]의 값이 true인 프로퍼티를 순회하며 열거한다.  
+(키가 심벌이면 열거 x) (순서 보장 x)  
+Object.prototype.hasOwnProperty : 객체 자신의 프로퍼티인지 체크후 열거하면 객체 자신의 프로퍼티만 열거 가능
+
+### Object.keys/values/entries
+Object.keys : 객체 자신의 열거 가능한 프로퍼티 키를 배열로 반환  
+Object.values : ES8 도입, 객체 자신의 열거 가능한 프로퍼티 값을 배열로 반환
+Object.entries : ES8 도입, 객체 자신의 열거 가능한 프로퍼티 키와 값의 쌍의 배열을 배열에 담아 반환
 
 
 ## Questions
 - 함수 객체의 prototype과 일반 객채의 __proto__는 어떻게 다른가요?
 - Function 생성자 함수를 통해 함수를 만든 것과 함수 표현식이나 함수 선언문을 사용하여 만든 함수는 어떻게 다른가요?
+- 프로토타입 체인을 통해 상속받은 메서드를 상속받은 객체에서 변경했을 때 어떤 일이 발생하나요? 
+- for ... in에 대해 자세히 설명해보시오. toString과 같은 프로퍼티는 열거가 되나요 안되나요, 그 이유는 무엇인가요?
