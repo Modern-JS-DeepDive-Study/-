@@ -2,7 +2,7 @@
 
 ## Object 생성자 함수
 new 연산자와 함께 Object 생성자 함수를 호출함으로서 생성. 이렇게 만들어진 객체를 인스턴스라 함  
-Object외에도 String, Number, Boolean, function, Array, Date, RegExp, Promise 등의 빌트인 생성자 함수를 제공  
+Object외에도 String, Number, Boolean, Function, Array, Date, RegExp, Promise 등의 빌트인 생성자 함수를 제공  
 특별한 경우가 아니면 객체 리터럴을 통해 만드는 것을 권장
 ## 생성자 함수
 ### 객체 리터럴에 의한 객체 생성 방식의 문제점
