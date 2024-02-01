@@ -1,0 +1,1 @@
+# chapter 20 : strict mode
