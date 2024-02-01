@@ -217,7 +217,7 @@ Object.prototype.hasOwnProperty : 객체 자신의 프로퍼티인지 체크후 
 
 ### Object.keys/values/entries
 Object.keys : 객체 자신의 열거 가능한 프로퍼티 키를 배열로 반환  
-Object.values : ES8 도입, 객체 자신의 열거 가능한 프로퍼티 값을 배열로 반환
+Object.values : ES8 도입, 객체 자신의 열거 가능한 프로퍼티 값을 배열로 반환  
 Object.entries : ES8 도입, 객체 자신의 열거 가능한 프로퍼티 키와 값의 쌍의 배열을 배열에 담아 반환
 
 
