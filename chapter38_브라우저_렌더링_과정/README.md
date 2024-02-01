@@ -19,7 +19,7 @@ uri, urn, url
 브라우저의 렌더링 엔진이 html 파싱 도중 외부 리소스 로드 태그(css, img, script 등)을 만나면 html 파싱을 일시 중단하고 해당 리소스 파일을 요청해서 받아옴
 
 ### HTTP 1.1과 HTTP 2.0
-HTML(HyperText Transer Protocol)은 웹에서 브라우저와 서버가 통신하기 위한 프로토콜(규약)이다.  
+HTTP(HyperText Transer Protocol)은 웹에서 브라우저와 서버가 통신하기 위한 프로토콜(규약)이다.  
 1996년 HTTP/1.0, 1999년 HTTP/1.1, 2015년 HTTP/2가 발표됨.  
 **HTTP 1.1**은 커넥션당 하나의 요청과 응답만 처리 -> 리소스 동시 전송 불가능으로 요청할 리소스의 개수이 비례하여 응답 시간도 증가  
 **HTTP 2.0**은 커넥션당 여러 개의 요청과 응답, 즉 다중 요청/응답이 가능. -> 1.1에 비해 속도가 약 50% 빠르다고 알려져 있음.
@@ -40,7 +40,7 @@ HTML과 동일한 과정을 거침. CSS는 CSSOM을 생성. HTML 태그 속 CSS�
 HTML의 DOM과 CSS의 CSSOM을 합쳐 렌더 트리로 결합  
 렌더트리는 렌더링을 위한 트리 구조의 자료구이기 때문에 브라우저 화면에 렌더링되지 않는 노드(meta 태그, script 태그 등)과 CSS에 의해 비표시(display:none 등)은 포함 x  
 ![renderTree](./images/renderTree.png)  
-다음과 같은 상황에 레이아웃 및 페인팅 재차 실행
+다음과 같은 상황에 레이아웃 및 페인팅 재차 실행  
 - JS에 의한 노드 추가, 삭제
 - 브라우저 창의 리사이징에 의한 뷰포트 크기 변경
 - HTML 요소 레이아웃 변경 발생시키는 width/height, margin, padding, border, display, position, top/right/bottom/left등의 스타일 변경  
@@ -50,8 +50,8 @@ HTML의 DOM과 CSS의 CSSOM을 합쳐 렌더 트리로 결합
 HTML진행하다가 script태그 만날 시 렌더링 엔진은 js 엔진에 제어권을 넘김.  
 js 엔진은 js 코드를 파싱하여 cpu가 이해할 수 있는 저수준 언어로 변환하고 실행  
 구글 크롬과 Node.js의 V8, 파이어폭스의 SpiderMonkey, 사파리의 JavaScriptCore 등 다양한 종류 있음   
--> 모두 ECMAScript 사양 준수
-![domApi에 의한 리플로우,리페인트](./images/domApi.png)
+-> 모두 ECMAScript 사양 준수  
+![domApi에 의한 리플로우,리페인트](./images/domApi.png)  
 
 js코드에 의해 dom, cssom 변경 시 리플로우, 리페인트 실행  
 리플로우와 리페인트가 반드시 순차적으로 동시에 실행되는 것은 아님. 레이아웃에 영향이 없는 변경은 리페인트만 실행
