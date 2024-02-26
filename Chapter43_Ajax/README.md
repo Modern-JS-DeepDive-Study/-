@@ -93,3 +93,15 @@ xhr.open(method, url[. async])
 HTTP 요청 메서드는 클라이언트가 서버에게 요청의 종류와 목적(리소스에 대한 행위)를 알리는 방법으로 주로 5가지 요청 메서드를 사용하여 CRUD를 구현한다.
 | HTTP 요청 메서드 | 종류 | 목적 | 페이로드 |
 |:-------------:|:-------:|:--------:|:---------:|
+| GET | index/retrieve | 모든/특정 리소스 취득 | X |
+| POST | create | 리소스 생성 | O |
+| PUT | replace | 리소스의 전체 교체 | O |
+| PATCH | modify | 리소스의 일부 수정 | O |
+| DELETE | delete | 모든/특정 리소스 삭제 | X |
+
+#### XMLHttpRequest.prototype.send
+send 메서드는 open 메서드로 초기화된 HTTP 요청을 서버에 전송한다. 기본적으로 서버로 전송하는 데이터는 GET, POST 요청 메서드에 따라 전송 방식에 차이가 있다.
+- GET 요청 메서드의 경우 데이터를 URL의 일부분인 쿼리 문자열로 서버에 전송한다.
+- POST 요청 메서드의 경우 데이터(페이로드)를 요청 몸체(request body)에 담아 전송한다.
+![HTTP요청응답메시지](images/HTTP요청응답메시지.jpg)  
+- 페이로드가 객체인 경우 반드시 JSON.stringify 메서드를 사용하여 직렬화한 다음 전달해야 한다.
