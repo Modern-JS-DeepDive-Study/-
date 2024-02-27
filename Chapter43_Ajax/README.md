@@ -105,3 +105,33 @@ send 메서드는 open 메서드로 초기화된 HTTP 요청을 서버에 전송
 - POST 요청 메서드의 경우 데이터(페이로드)를 요청 몸체(request body)에 담아 전송한다.
 ![HTTP요청응답메시지](images/HTTP요청응답메시지.jpg)  
 - 페이로드가 객체인 경우 반드시 JSON.stringify 메서드를 사용하여 직렬화한 다음 전달해야 한다.
+
+#### XMLHttpRequest.prototype.setRequestHeader
+setRequestHeader 메서드는 특정 HTTP 요청의 헤더 값을 설정한다. setRequestHeader 메서드는 반드시 open 메서드를 호출한 이후에 호출해야 한다.   
+자주 사용하는 HTTP 요청 헤더인 Content-type과 Accept를 보자  
+Content-type은 요청 몸체에 담아 전송할 데이터의 MIME(Multipurpose Internet Mail Extensions) 타입의 정보를 표현한다. 자주 사용하는 MIME 타입은 다음과 같다. 
+| MIME 타입 | 서브타입 |
+|:-------------:|:-------:|
+| text | text/plain, text/html, text/css, text/javascript |
+| application | application/json, application/x-www-form-urlencode | 
+| multipart | multipart/formed-data | 
+
+HTTP 클라이언트가 서버에 요청할 때 서버가 응답할 데이터의 MIME 타입을 Accept로 지정할 수 있다.  
+만약 Accept 헤더를 설정하지 않으면 send 메서드가 호출될 때 Accept 헤더가 */*으로 전송된다.
+
+### HTTP 응답 처리
+readyState 프러핕 값이 변경된 경우 발생하는 readystatechange 이벤트를 캐치하여 다음과 같이 HTTP 응답을 처리할 수 있다. 
+```js
+if (xhr.readyState !== XMLHttpRequest.DONE) return;
+
+if (xhr.status === 200) {
+    console.log(JSON.parse(xhr.response));
+
+} else {
+    console.error('Error', xhr.status, xhr.statusText);
+};
+```
+readystatechange 이벤트 대신 load 이벤트를 캐치해도 좋다. load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생한다.
+
+
+
