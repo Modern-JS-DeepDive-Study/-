@@ -120,7 +120,7 @@ HTTP 클라이언트가 서버에 요청할 때 서버가 응답할 데이터의
 만약 Accept 헤더를 설정하지 않으면 send 메서드가 호출될 때 Accept 헤더가 */*으로 전송된다.
 
 ### HTTP 응답 처리
-readyState 프러핕 값이 변경된 경우 발생하는 readystatechange 이벤트를 캐치하여 다음과 같이 HTTP 응답을 처리할 수 있다. 
+readyState 프로퍼티 값이 변경된 경우 발생하는 readystatechange 이벤트를 캐치하여 다음과 같이 HTTP 응답을 처리할 수 있다. 
 ```js
 if (xhr.readyState !== XMLHttpRequest.DONE) return;
 
@@ -133,5 +133,6 @@ if (xhr.status === 200) {
 ```
 readystatechange 이벤트 대신 load 이벤트를 캐치해도 좋다. load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생한다.
 
-
-
+## Questions
+- Ajax 와 전통적인 웹페이지 생명주기의 차이에 대해서 설명해보세요.
+- JSON 에 대해 설명해보세요.
