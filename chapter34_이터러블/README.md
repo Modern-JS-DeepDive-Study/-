@@ -152,10 +152,10 @@ for ( const num of fibonacciFunc()) {
 }
 
 // 배열 디스트럭처링 할당을 통해 무한 이러터블에서 3개의 요소만 취득한다.
-const [f1, f2, f3] - fibonacciFunc();
+const [f1, f2, f3] = fibonacciFunc();
 console.log(f1, f2, f3); // 1 2 3
 ```
-위 예제의 이터러블은 **지연 평가(lazy evaluation)**를 통해 데이터를 생성  
+위 예제의 이터러블은 **지연 평가(lazy evaluation)** 를 통해 데이터를 생성  
 이처럼 지연 평가를 사용하면 불필요한 데이털르 미리 생성하지 않고 필요한 데이터를 필요한 순간에 생성하므로 빠른 실행 속도를 기대할 수 있고 불필요한 메모리를 소비하지 않으며 무한도 표현할 수 있다는 장점이 있다.
 
 ## Questions
