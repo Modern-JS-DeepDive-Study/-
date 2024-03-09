@@ -151,7 +151,7 @@ await 함수는 반드시 async 함수 내부에서 사용해야 한다. async �
 ### 에러 처리
 - 비동기 함수의 콜백 함수를 호출한 것은 비동기 함수가 아니기 때문에 try...catch 문을 사용해 에러 캐치를 할 수 없다.
 - async/await 에러 처리는 try...catch 사용가능. 프로미스 반환 비동기 함수는 명시적으로 호출할 수 있기 때문
-- **async 함수 내에서 catch 문을 사용해서 에러 처리를 하지 않으면 async 함수는 발생한 에러를 reject하는 프로미스를 반환한다. 따라서 async 함수를 호출하고 Promise.prototype.catch 후속 처리 메서드를 사용해 에러를 캐치할 수도 있다.
+- **async 함수 내에서 catch 문을 사용해서 에러 처리를 하지 않으면 async 함수는 발생한 에러를 reject하는 프로미스를 반환한다.** 따라서 async 함수를 호출하고 Promise.prototype.catch 후속 처리 메서드를 사용해 에러를 캐치할 수도 있다.
 ```js
 const fetch = require('node-fetch');
 
