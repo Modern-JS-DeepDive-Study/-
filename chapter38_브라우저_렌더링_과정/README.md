@@ -29,7 +29,7 @@ HTTP(HyperText Transer Protocol)은 웹에서 브라우저와 서버가 통신�
 2. 브라우저는 바이트 형태로 응답받고, meta 태그의 charset 어트리뷰트에 의해 지정된 인코딩 방식으로 문자열 변환 ( charset은 응답 헤더에 담겨 응답됨)
 3. 문자열 변환된 HTML 문서를 코드 최소 단위인 토큰들로 분해
 4. 토큰들을 객체로 변환하여 노드 생성. 
-5. HTML문서는 HTML 요소들의 집합으로 이루어지며 HTML 요소는 중첩 관계를 가짐. 이런 관계를 반영하여 모든 노드들을 트리 자료구조로 구성. 이 트리 자료구조를 **DOM(Document Object Model)**이라 부름.
+5. HTML문서는 HTML 요소들의 집합으로 이루어지며 HTML 요소는 중첩 관계를 가짐. 이런 관계를 반영하여 모든 노드들을 트리 자료구조로 구성. 이 트리 자료구조를 **DOM(Document Object Model)** 이라 부름.
 
 -> DOM은 HTML 문서 파싱 결과물
 
