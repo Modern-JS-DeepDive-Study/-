@@ -24,7 +24,7 @@ HTML 요소는 HTML 문서를 구상하는 개별적인 요소를 의미한다.
 DOM은 위와 같으며 노드 객체는 총 12개의 종류가 있다. 그 중 중요한 것은 4가지 이다.
 
 #### 문서 노드
-DOM 트리 최상위의 루트 노드로 document객체를 가리킨다. window.cdocument, document로 참조할 수 있다.
+DOM 트리 최상위의 루트 노드로 document객체를 가리킨다. window.document, document로 참조할 수 있다.
 #### 요소 노드
 HTML 요소를 가리키는 객체. 
 #### 어트리뷰트 노드
