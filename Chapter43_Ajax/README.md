@@ -1,7 +1,7 @@
 # Chapter43 : Ajax
 
 ## Ajax란?
-Ajax(Asnchronous JavaScript and XML)란 JS를 사용하여 브라우저가 서버에게 비동기 방식으로 데이터를 요청하고, 서버가 응답한 데이털르 수신하여 웹페이지를 동적으로 갱신하는 프로그래밍 방식을 말한다.   
+Ajax(Asnchronous JavaScript and XML)란 JS를 사용하여 브라우저가 서버에게 비동기 방식으로 데이터를 요청하고, 서버가 응답한 데이터를 수신하여 웹페이지를 동적으로 갱신하는 프로그래밍 방식을 말한다.   
 Ajax는 브라우저에서 제공하는 Web API인 XMLHttpRequest 객체를 기반으로 동작한다.
 XMLHttpRequest는 비동기 통신을 위한 메서드와 프로퍼티를 제공한다.
 
