@@ -1,4 +1,4 @@
-# *
+# Yonghwan
 * - 발표자료 정리
 
 ## Question
