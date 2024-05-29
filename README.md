@@ -1,5 +1,5 @@
 # Yonghwan
-* - 발표자료 정리
+Yonghwan - 발표자료 정리
 
 ## Question
 ### Chapter17_생성자_함수에_의한_객체_생성
